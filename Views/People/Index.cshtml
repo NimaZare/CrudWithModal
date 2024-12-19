@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CrudWithModal.Models.Person>
+
+@{
+    ViewData["Title"] = "کاربران";
+}
+
+<h5>مدیریت کاربران</h5>
+<br />
+<br />
+<p>
+    <a class="btn btn-primary" onclick="CreatePerson()">افزودن کاربر جدید</a>
+</p>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    <a class="btn btn-info" onclick="DetailsPerson(@item.ID)">جزئیات</a> |
+                    <a class="btn btn-warning" onclick="EditPerson(@item.ID)">ویرایش</a> |
+                    <a class="btn btn-danger" onclick="DeletePerson(@item.ID)">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="myModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="myModalBody">
+            </div>
+            @* <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div> *@
+        </div>
+    </div>
+</div>
